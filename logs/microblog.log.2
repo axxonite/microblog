@@ -1,0 +1,80 @@
+2020-01-12 17:04:21,753 ERROR: Exception on /favicon.ico [GET] [in c:\dev\microblog\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\engine\default.py", line 581, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\dev\microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\dev\microblog\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\dev\microblog\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\dev\microblog\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\dev\microblog\venv\lib\site-packages\flask\app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "c:\dev\microblog\venv\lib\site-packages\flask\app.py", line 2241, in preprocess_request
+    rv = func()
+  File "C:\Dev\microblog\app\routes.py", line 13, in before_request
+    if current_user.is_authenticated:
+  File "c:\dev\microblog\venv\lib\site-packages\werkzeug\local.py", line 348, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "c:\dev\microblog\venv\lib\site-packages\werkzeug\local.py", line 307, in _get_current_object
+    return self.__local()
+  File "c:\dev\microblog\venv\lib\site-packages\flask_login\utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "c:\dev\microblog\venv\lib\site-packages\flask_login\utils.py", line 335, in _get_user
+    current_app.login_manager._load_user()
+  File "c:\dev\microblog\venv\lib\site-packages\flask_login\login_manager.py", line 359, in _load_user
+    return self.reload_user()
+  File "c:\dev\microblog\venv\lib\site-packages\flask_login\login_manager.py", line 321, in reload_user
+    user = self.user_callback(user_id)
+  File "C:\Dev\microblog\app\models.py", line 10, in load_user
+    return User.query.get(int(user_id))
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\orm\query.py", line 982, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\orm\query.py", line 1094, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\orm\loading.py", line 284, in load_on_pk_identity
+    return q.one()
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3325, in one
+    ret = self.one_or_none()
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3294, in one_or_none
+    ret = list(self)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3367, in __iter__
+    return self._execute_and_instances(context)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3392, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\engine\base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1101, in _execute_clauseelement
+    distilled_params,
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1250, in _execute_context
+    e, statement, parameters, cursor, context
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\dev\microblog\venv\lib\site-packages\sqlalchemy\engine\default.py", line 581, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen 
+FROM user 
+WHERE user.id = ?]
+[parameters: (5,)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-01-12 17:11:00,842 INFO: Microblog startup [in C:\Dev\microblog\app\__init__.py:41]
+2020-01-12 17:11:14,904 INFO: Microblog startup [in C:\Dev\microblog\app\__init__.py:41]
+2020-01-12 17:11:30,588 INFO: Microblog startup [in C:\Dev\microblog\app\__init__.py:41]
